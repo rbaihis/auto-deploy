@@ -59,5 +59,5 @@ auto-deploy
 │       ├───conf
 │       └───webflutter
 └───flutter
-    └─── contains flutter code (not just the build)
+    └─── contains flutter code not the build
 ```
