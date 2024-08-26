@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  Responsive web app powered by Flutter and Dart.
+  Responsive web app powered by Flutter and Dart and deployed using ansible
 </p>
 
 <p align="center">
