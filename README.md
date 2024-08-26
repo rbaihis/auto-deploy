@@ -25,8 +25,8 @@ steps: <br>
 
 ### update ansible/inventory.ini
 modify: 
-  - ansible_host=<ip@ or DNS>
-  - ansible_user=<ssh remote user to connect to>
+  - ansible_host=\<ip@ or DNS>\
+  - ansible_user=\<remote userSSH to connect to\>
 ### update ansible\template\conf\static-site-config
 default configuration is this as you please:
 ```log
