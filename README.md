@@ -57,7 +57,7 @@ auto-deploy
 ├───ansible
 │   └───template
 │       ├───conf
-│       └───webflutter
+│       └───webflutter(build will be saved here at runtime when building flutter)
 └───flutter
     └─── contains flutter code not the build
 ```
