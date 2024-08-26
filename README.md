@@ -28,13 +28,13 @@ server {
 ```
 
 ### update ansible\playbook.yaml  paths if necessary
-paths as your static-site-config :</br>
-path_dest_data: /var/www/html/flutter  #change this as you please on respect to static-site-config<br>
-otherpaths: update if you need to based on your use case.
+some paths are on respect to  static-site-config :</br>
+  path_dest_data: /var/www/html/flutter  #change this as you please on respect to static-site-config<br>
+  otherpaths: update if you need to based on your use case.
 
-
+---
 ## update .github\workflows\ci.yml
-if necessary update some paths  or working directories since this project have this structure:
+if necessary update some paths  or working directories since this project DEMO have this structure:
 ``` log
 auto-deploy
 ├───.github
