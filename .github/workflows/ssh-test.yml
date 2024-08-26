@@ -6,6 +6,8 @@ on:
 jobs:
   test-ssh:
     runs-on: ubuntu-latest
+    env:
+      MY_SSH_REMOTE_SERVER: 'admin@rabbeh.giize.com'  # modify as your remote server 
 
     steps:
       - name: Checkout code
@@ -25,4 +27,4 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa admin@rabbeh.giize.com 'echo "SSH connection successful"'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{env.MY_SSH_REMOTE_SERVER}}" 'echo "SSH connection successful"'
