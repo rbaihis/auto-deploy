@@ -1,5 +1,5 @@
 - name: install nginx
-  hosts: all
+  hosts: testweb
   become: true
   vars:
     path_src_data: ./template/webflutter/ # '/' is important at the end
