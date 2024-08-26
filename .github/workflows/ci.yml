@@ -74,7 +74,7 @@ jobs:
       ## testing if ssh working properly
       - name: Test SSH connection
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ envMY_SSH_REMOTE_SERVER } 'echo "SSH connection successful"'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "${{ env.MY_SSH_REMOTE_SERVER }" 'echo "SSH connection successful"'
 
       ## installing ansible
       - name: Install Ansible
