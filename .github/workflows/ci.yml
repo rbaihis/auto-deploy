@@ -25,16 +25,34 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
+      - name: PWD
+        run: pwd
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
+          channel: "stable"
           flutter-version: '3.24.1'
-        
+          
+      - name: Analyzing project
+        run: flutter analyze
+        working-directory: flutter  
 
       - name: Install dependencies
         run: flutter pub get
         working-directory: flutter
-        
+      
+
+      - name: Enable web support
+        run: flutter config --enable-web
+        working-directory: flutter
+
       - name: Build Web App
         run: flutter build web --release
         working-directory: flutter
+
+      - name: Copy web build to Ansible template directory
+        run: cp -R flutter/build/web ansible/template/webflutter
+
+      
+      
