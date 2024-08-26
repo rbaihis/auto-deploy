@@ -1,0 +1,57 @@
+
+- name: update
+  apt: update_cache=yes 
+
+- name: Add user to group root
+  user:
+    name: "{{ ansible_user }}"
+    groups: root
+    state: present
+
+- name: Install Nginx
+  apt: 
+    name: nginx 
+    state: latest
+
+- name: Ensure Nginx is started and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Ensure the web-date-repo is clean
+  file:
+    path: "{{path_dest_data}}/"  # make sure the last '/' exist, else u will delete that repo itself not what inside of it.
+    state: directory
+    recurse: yes
+
+
+- name: Remove default nginx configuration
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Add nginx configuration
+  copy:
+    src: "{{path_src_config}}"
+    dest: "{{path_dest_config}}"
+    owner: root
+    group: root
+    mode: '0644'
+- name: Enable website configuration
+  file: 
+    src: "{{path_dest_config}}"
+    dest: "{{path_enable_site}}"
+    state: link
+
+- name: copy web app files
+  copy:
+    src: "{{path_src_data}}" #remove * if u want to paste sub directory as well
+    dest: "{{path_dest_data}}"
+    owner: www-data
+    group: www-data
+    mode: '0644'
+  notify:
+  - restart nginx
+
+  

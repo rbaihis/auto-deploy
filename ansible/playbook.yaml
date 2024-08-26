@@ -1,0 +1,18 @@
+- name: install nginx
+  hosts: all
+  become: true
+  vars:
+    path_src_data: ./template/webflutter/ # '/' is important at the end
+    path_dest_data: /var/www/html/flutter
+    path_src_config: ./template/conf/static-site-config
+    path_dest_config: /etc/nginx/sites-available/static-site-config
+    path_enable_site: /etc/nginx/sites-enabled/static-site-config
+  tasks:
+  - include_tasks: ./task.yaml
+
+
+  handlers:
+  - name: reload nginx
+    include_tasks: handler.yaml
+
+
