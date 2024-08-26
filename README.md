@@ -8,20 +8,20 @@ auto-deploy
 │   
 └───flutter(contains flutter code  that we will build)
 ```
-this simply build your flutter code on push request in flutter 
-==> genrates web build 
-==> test ssh connection to your server 
-==> install ansible in gitaction 
+this simply build your flutter code on push request in flutter<br>
+==> genrates web build <br>
+==> test ssh connection to your server <br>
+==> install ansible in gitaction <br>
 ==> execute the ansible playbook for remote deployment to your nginx
 
 
 ## For deploy to work to your changes 
 ### create a git secret name: VPS_SSH_KEY
-contains your private key to connect to the remote server.
-steps: 
-1- your repository
-2- settings --> secrets and variables --> actions
-3- new repository secret --> name it:  VPS_SSH_KEY --> copy the ssh private key --> save
+contains your private key to connect to the remote server.<br>
+steps: <br>
+  1- your repository<br>
+  2- settings --> secrets and variables --> actions<br>
+  3- new repository secret --> name it:  VPS_SSH_KEY --> copy the ssh private key --> save<br>
 
 ### update ansible/inventory.ini
 modify: 
