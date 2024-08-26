@@ -18,8 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # varible used for ssh test (to test ssh connection to your remote server) 
-      MY_SSH_TEST_URL: 'Hello, World!'  # Define a variable
+      MY_SSH_REMOTE_SERVER: 'admin@rabbeh.giize.com'  # modify as your remote server 
 
     steps:
       - uses: actions/checkout@v4
@@ -75,7 +74,7 @@ jobs:
       ## testing if ssh working properly
       - name: Test SSH connection
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa admin@rabbeh.giize.com 'echo "SSH connection successful"'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ envMY_SSH_REMOTE_SERVER } 'echo "SSH connection successful"'
 
       ## installing ansible
       - name: Install Ansible
