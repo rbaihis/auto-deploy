@@ -1,5 +1,19 @@
 # auto-deploy
-using git Action + git secret + ansible(in git-actions)
+this demo flutter app has this structure:
+``` log
+auto-deploy
+├───.github(git action pipeline for build and run ansible deploy on nginx)
+│
+├───ansible
+│   
+└───flutter(contains flutter code  that we will build)
+```
+this simply build your flutter code on push request in flutter 
+==> genrates web build 
+==> test ssh connection to your server 
+==> install ansible in gitaction 
+==> execute the ansible playbook for remote deployment to your nginx
+
 
 ## For deploy to work to your changes 
 ### create a git secret name: VPS_SSH_KEY
