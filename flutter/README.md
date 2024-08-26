@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://github.com/minikin/flutter-web-demo">
+  <a href="https://github.com/rbaihis/auto-deploy">
    Flutter Web App Demo
   </a>
 </h1>
