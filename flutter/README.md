@@ -5,7 +5,10 @@
 </h1>
 
 <p align="center">
-  Responsive web app powered by Flutter and Dart and deployed using ansible
+  Responsive web app powered by Flutter and Dart.</br>
+  using git Actions 
+  git secret for ssh key 
+  deployed using ansible on remote server.
 </p>
 
 <p align="center">
