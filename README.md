@@ -15,7 +15,7 @@ modify:
   - ansible_user=<ssh remote user to connect to>
 ### update ansible\template\conf\static-site-config
 default configuration is this as you please:
---- log
+```log
 server {
     listen 80;
     server_name rabbeh.giize.com;
@@ -25,10 +25,23 @@ server {
         index index.html;
     }
 }
----
+```
 ### update ansible\playbook.yaml  paths if necessary
 paths as your static-site-config :
 path_dest_data: /var/www/html/flutter  #change this as you please on respect to static-site-config
 otherpaths: update if you need to based on your use case.
 ---
-##
+## update .github\workflows\ci.yml
+if necessary update some paths  or working directories since this project have this structure:
+``` log
+auto-deploy
+├───.github
+│   └───workflows
+|        └───ci.yaml
+├───ansible
+│   └───template
+│       ├───conf
+│       └───webflutter
+└───flutter
+    └─── contains flutter code (not just the build)
+```
