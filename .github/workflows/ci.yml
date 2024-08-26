@@ -1,33 +1,29 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the workflow will run
+# trigger when
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
     paths:
       - 'flutter/**'
       
+  # add the below if you also whant to trigger script on pull requests as well
   # pull_request:
   #   branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      # varible used for ssh test (to test ssh connection to your remote server) 
+      MY_SSH_TEST_URL: 'Hello, World!'  # Define a variable
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
+      
       - name: PWD
         run: pwd
 
@@ -39,43 +35,53 @@ jobs:
           
       - name: Analyzing project
         run: flutter analyze
+        # change working directory based on your github repo structure where flutter code is 
         working-directory: flutter  
 
       - name: Install dependencies
         run: flutter pub get
+        # change working directory based on your github repo structure where flutter code is
         working-directory: flutter
       
 
       - name: Enable web support
         run: flutter config --enable-web
+        # change working directory based on your github repo structure where flutter code is
         working-directory: flutter
 
       - name: Build Web App
         run: flutter build web --release
+        # change working directory based on your github repo structure where flutter code is
         working-directory: flutter
 
+        # the build is copied in ansible folder to have the build ready to copy it 
       - name: Copy web build to Ansible template directory
         run: cp -R flutter/build/web ansible/template/webflutter
 
+      # creating the ssh key based on the gitSecret saved 
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
+      # modifying config file for the gitaction server to remote access your server
       - name: Set up SSH config
         run: |
           echo "Host *" > ~/.ssh/config
           echo "    StrictHostKeyChecking no" >> ~/.ssh/config
           echo "    UserKnownHostsFile=/dev/null" >> ~/.ssh/config
 
+      ## testing if ssh working properly
       - name: Test SSH connection
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa admin@rabbeh.giize.com 'echo "SSH connection successful"'
-          
+
+      ## installing ansible
       - name: Install Ansible
         run: sudo apt-get install -y ansible 
 
+      ## executing the ansible script
       - name: Run Ansible Playbook
         run: ansible-playbook -i ansible/inventory.ini  ansible/playbook.yaml 
       
