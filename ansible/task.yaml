@@ -52,6 +52,6 @@
     group: www-data
     mode: '0644'
   notify:
-  - restart nginx
+  - reload nginx
 
   
