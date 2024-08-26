@@ -25,7 +25,7 @@ steps: <br>
 
 ### update ansible/inventory.ini
 modify: 
-  - ansible_host=\<ip@ or DNS>\
+  - ansible_host=\<ip@ or DNS\>
   - ansible_user=\<remote userSSH to connect to\>
 ### update ansible\template\conf\static-site-config
 default configuration is this as you please:
@@ -44,11 +44,11 @@ server {
 ### update ansible\playbook.yaml  paths if necessary
 some paths are on respect to  static-site-config :</br>
   path_dest_data: /var/www/html/flutter  #change this as you please on respect to static-site-config<br>
-  otherpaths: update if you need to based on your use case.
+  otherpaths: update if you need to based on your use case.<br>
 
 ---
 ## update .github\workflows\ci.yml
-if necessary update some paths  or working directories since this project DEMO have this structure:
+if necessary update some paths  or working directories since this project DEMO have this structure:<br>
 ``` log
 auto-deploy
 ├───.github
