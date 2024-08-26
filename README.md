@@ -4,7 +4,7 @@ this demo flutter app has this structure:
 auto-deploy
 ├───.github(git action pipeline for build and run ansible deploy on nginx)
 │
-├───ansible
+├───ansible(contains the ansible script for executing the tasks of deploiment in nginx)
 │   
 └───flutter(contains flutter code  that we will build)
 ```
